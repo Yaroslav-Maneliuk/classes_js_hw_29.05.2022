@@ -22,6 +22,9 @@ class RangeValidator {
     return this._to;
   }
   set to(to) {
+    if(this._from > this._to && number > this._to && number < this._from){
+      throw RangeError("Number is out of range");
+    }
     this._to = to;
   }
   get range(){
@@ -30,8 +33,6 @@ class RangeValidator {
   validate(number) {
     if (this._from < this._to && number < this._to && number > this._from) {
       return number;
-    } else {
-      throw RangeError("Number is out of range");
     }
   }
 }
@@ -55,7 +56,7 @@ class Figure3D {
   }
 }
 
-class Sphere extends Figure3D() {
+class Sphere extends Figure3D {
   constructor(name, radius, height) {
     super(name);
     this._radius = radius;
@@ -74,11 +75,11 @@ class Sphere extends Figure3D() {
     this._height = height;
   }
   calcVolume() {
-    return Math.PI * this._radius ** 2 * this._height;
+    return Math.PI * this.radius ** 2 * this._height;
   }
 }
 
-class Cylinder extends Figure3D() {
+class Cylinder extends Figure3D {
   constructor(name, radius) {
     super(name);
     this._radius = radius;
@@ -90,11 +91,11 @@ class Cylinder extends Figure3D() {
     this._radius = radius;
   }
   calcVolume() {
-    return (4 / 3) * Math.PI * this._radius ** 3;
+    return (4 / 3) * Math.PI * this.radius ** 3;
   }
 }
 
-class Cube extends Figure3D() {
+class Cube extends Figure3D {
   constructor(name, height) {
     super(name);
     this._height = height;
@@ -106,6 +107,6 @@ class Cube extends Figure3D() {
     this._height = height;
   }
   calcVolume() {
-    return this._height ** 3;
+    return this.height ** 3;
   }
 }
